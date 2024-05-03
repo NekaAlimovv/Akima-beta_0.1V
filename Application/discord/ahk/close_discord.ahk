@@ -1,0 +1,1 @@
+Process, Close, Discord.exe

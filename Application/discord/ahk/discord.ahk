@@ -1,0 +1,1 @@
+﻿Run, "c:\Users\NekaAlimovv\AppData\Local\Discord\app-1.0.9044\Discord.exe"

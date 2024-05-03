@@ -1,0 +1,1 @@
+﻿Run, %comspec% /k, C:\My Documents

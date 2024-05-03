@@ -1,0 +1,1 @@
+Run, "D:\SteamLibrary\steamapps\common\Counter-Strike Global Offensive\game\bin\win64\cs2.exe"

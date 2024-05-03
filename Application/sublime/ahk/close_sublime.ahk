@@ -1,0 +1,1 @@
+Process, Close, sublime_text.exe

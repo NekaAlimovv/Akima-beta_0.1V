@@ -1,0 +1,1 @@
+Run, "C:\Users\NekaAlimovv\AppData\Roaming\.tlauncher\legacy\Minecraft\TL.exe"
