@@ -33,7 +33,7 @@ Akima is a Python-based voice assistant designed to perform various tasks based 
 
 ## Credits
 
-Akima was developed by [NEKA ALIMOVV] ([Your GitHub Profile](https://github.com/NekaAlimovv)).
+Akima was developed by [NEKA ALIMOVV] ([ME PROFILE](https://github.com/NekaAlimovv)).
 
 ## License
 
