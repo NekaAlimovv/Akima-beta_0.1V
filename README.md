@@ -13,7 +13,7 @@ Akima is a Python-based voice assistant designed to perform various tasks based 
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/yourusername/akima-voice-assistant.git`
+1. Clone the repository: `git clone https://github.com/NekaAlimovv/akima-voice-assistant.git`
 2. Install dependencies: `pip install -r requirements.txt`
 3. Configure API keys and settings in `config.py`.
 
@@ -33,7 +33,7 @@ Akima is a Python-based voice assistant designed to perform various tasks based 
 
 ## Credits
 
-Akima was developed by [Your Name] ([Your GitHub Profile](https://github.com/yourusername)).
+Akima was developed by [NEKA ALIMOVV] ([Your GitHub Profile](https://github.com/NekaAlimovv)).
 
 ## License
 
