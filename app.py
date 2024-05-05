@@ -4,13 +4,19 @@ import random
 import time
 import speech_recognition as sr
 import pygame
+from googleapiclient.discovery import build
 import webbrowser as wb
-from bs4 import BeautifulSoup
-import requests
 import subprocess
+from colorama import Fore, Style
+import sys
+sys.path.append(r'C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\joke\random_meme.py')  
+from joke.random_meme import play_joke_sound, sound_floder
+
+API_KEY = 'AIzaSyAjJz-wQtZ5BQT_yMf2Y6eFSVIiaQg3sio'
+
 # Инициализация Pygame для воспроизведения звука
 pygame.mixer.init()
-
+# авто принятия матча в кс2
 # Функция Поиск в Браузере
 def search_in_browser(query, browser="chrome"):
     search_url = "http://www.google.com/search?q=" + query
@@ -25,6 +31,22 @@ def search_in_browser(query, browser="chrome"):
         print("Error:", e)
 
 # Функция Поиск в Юутбе
+
+def search_video(query):
+    youtube = build('youtube', 'v3', developerKey=API_KEY)
+    request = youtube.search().list(
+        part='snippet',
+        q=query,
+        maxResults=1,
+        type='video'
+    )
+    response = request.execute()
+    video_id = response['items'][0]['id']['videoId']
+    return f'https://www.youtube.com/watch?v={video_id}'
+
+def play_video(video_url):
+    wb.open(video_url)
+
 def search_in_youtube(query):
     search_url = "https://www.youtube.com/results?search_query=" + query
     wb.open(search_url)
@@ -92,6 +114,7 @@ while True:
 
     if "открой" in command:
         programs = []
+
         if "chrome" in command:
             programs.append(r'C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\chrome\ahk\open_chrome.exe')
         if "discord" in command:
@@ -124,9 +147,9 @@ while True:
     elif "закрой" in command:
         programs = []
         if "диспетчер задач" in command:
-            programs.append("taskmgr.exe")
+            programs.append("taskkill /f /fi taskmgr.exe")
         if "диспетчер устройств" in command:
-            programs.append("mmc.exe")
+            programs.append("taskkill /f /fi mmc.exe")
         if "пуск" in command:
             programs.append("explorer.exe")
         elif "закрой панель управления" in command:
@@ -154,9 +177,27 @@ while True:
             programs.append("sublime_text.exe")
         if "Visual Studio" in command:
             programs.append("Code.exe")
+        if "Не принимай игру" in command:
+            programs.append("autoaccept.exe")
         # Добавьте другие программы по аналогии
         close_programs(programs)
-    elif "звук на макс" in command:
+    elif "Закрой все вкладки" in command:
+        programs = []
+        programs.append(r'C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\listing\all_close_bowser.exe')
+        open_programs(programs)
+    elif "Закрой вкладку" in command:
+        programs = []
+        programs.append(r'C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\listing\close_browser_openwik.exe')
+        open_programs(programs)
+    elif "сверни все окна" in command:
+        programs = []
+        programs.append(r'C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\listing\open_okon.exe')
+        open_programs(programs)
+    elif "разверни все окна" in command:
+        programs = []
+        programs.append(r'C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\listing\open_okon.exe')
+        open_programs(programs)
+    elif   command in["звук на макс", "звук на 100%"]:
         programs = []
         programs.append(r"C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\volume\ahk\volume_max.exe")
         open_programs(programs)
@@ -192,6 +233,27 @@ while True:
         query = command.replace("ищи в ютуби", "").strip()
         search_in_youtube(query)
         play_random_sound(sound_folder)  
+    # auto accept counter-strike 2
+    elif command in ["стоп видео", "Stop video", "поставь видео на паузу"]:
+        programs = []
+        programs.append(r"C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\youtube-function\pause-video.exe")
+        open_programs(programs)  
+    elif command in ["Следующий видео", "следующий видео", "next video", "next видео"]:
+        programs = []
+        programs.append(r"C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\youtube-function\next video.exe")
+        open_programs(programs)  
+    elif command in ["Преведущий видео", "преведущий видео", "last video", "last видео"]:
+        programs = []
+        programs.append(r"C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\youtube-function\last.exe")
+        open_programs(programs)
+    elif command in ["5 сек вперёд", "пять сек вперёд"]:
+        programs = []
+        programs.append(r"C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\youtube-function\10right.exe")
+        open_programs(programs)
+    elif command in ["5 сек назад", "пять сек назад", "5 sec left", "five sec left"]:
+        programs = []
+        programs.append(r"C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\youtube-function\10left.exe")
+        open_programs(programs)
     elif "выключи компьютер" in command:
         os.system("shutdown /s /t 1")
     elif "спящий режим" in command:
@@ -205,3 +267,15 @@ while True:
         play_shutdown_sound()
         time.sleep(1)
         break
+    elif command in["шутка","скажи шутку","joke", "Tell a joke","Скажи шутку", "Joke"]:
+     play_joke_sound()
+    if command.startswith("ищи музыку"):
+        query = command.replace("ищи музыку", "").strip()
+        video_url = search_video(query)
+        play_video(video_url)
+        play_random_sound(sound_folder)
+    elif command in ["Прими игру", "прими игру", "Accept game", "accept game" ]:
+        programs = []
+        programs.append(r"C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\cs2\autoaccept.exe")
+        open_programs(programs)
+    
