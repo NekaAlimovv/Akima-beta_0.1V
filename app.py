@@ -7,16 +7,19 @@ import pygame
 from googleapiclient.discovery import build
 import webbrowser as wb
 import subprocess
+from PIL import ImageGrab
 from colorama import Fore, Style
 import sys
+sys.path.append(r'C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\ScreenShot\screen.py')
 sys.path.append(r'C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\joke\random_meme.py')  
 from joke.random_meme import play_joke_sound, sound_floder
+from Screen.screen import take_screenshot,save_path
 
 API_KEY = 'AIzaSyAjJz-wQtZ5BQT_yMf2Y6eFSVIiaQg3sio'
-
-# Инициализация Pygame для воспроизведения звука
 pygame.mixer.init()
-# авто принятия матча в кс2
+
+
+# Авто принятия матча в кс2
 # Функция Поиск в Браузере
 def search_in_browser(query, browser="chrome"):
     search_url = "http://www.google.com/search?q=" + query
@@ -83,6 +86,15 @@ def play_shutdown_sound():
     pygame.mixer.music.load(shutdown_sound_path)
     pygame.mixer.music.play()
 
+def play_error():
+    error_file = 'C:\\Users\\NekaAlimovv\\Desktop\\Создающейся проэкты\\AKIMA_beta\\sound\\error\\not_found.wav'
+    if os.path.exists(error_file):
+        pygame.mixer.init()
+        pygame.mixer.music.load(error_file)
+        pygame.mixer.music.play()
+    else:
+        print("Error: Sound file not found.")
+
 # Функция для распознавания речи
 def voice_command():
     recognizer = sr.Recognizer()
@@ -102,13 +114,10 @@ def voice_command():
         print("Проблема с подключением к сервису распознавания речи.")
         return ""
 
-# Пример использования
 sound_folder = r'C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\sound\OK'
 
-# Проигрываем звук при запуске программы
 play_startup_sound()
 
-# Пример цикла обработки команд
 while True:
     command = voice_command()
 
@@ -154,7 +163,7 @@ while True:
             programs.append("explorer.exe")
         elif "закрой панель управления" in command:
           os.system("taskkill /f /fi \"WINDOWTITLE eq Панель управления\"")
-        play_random_sound(sound_folder)  # Воспроизводим звук
+        play_random_sound(sound_folder)  
         if "командную строку" in command:
             programs.append("cmd.exe")
         if "настройки" in command:
@@ -179,7 +188,7 @@ while True:
             programs.append("Code.exe")
         if "Не принимай игру" in command:
             programs.append("autoaccept.exe")
-        # Добавьте другие программы по аналогии
+
         close_programs(programs)
     elif "Закрой все вкладки" in command:
         programs = []
@@ -278,4 +287,6 @@ while True:
         programs = []
         programs.append(r"C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\Application\cs2\autoaccept.exe")
         open_programs(programs)
-    
+    elif command in ["Сделай скриншот", "сделай скриншот", "Сделай скрин", "сделай скрин"]:
+        take_screenshot(save_path)
+        play_random_sound(sound_folder)
