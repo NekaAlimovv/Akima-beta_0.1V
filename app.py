@@ -18,8 +18,6 @@ from Screen.screen import take_screenshot,save_path
 API_KEY = 'AIzaSyAjJz-wQtZ5BQT_yMf2Y6eFSVIiaQg3sio'
 pygame.mixer.init()
 
-
-# Авто принятия матча в кс2
 # Функция Поиск в Браузере
 def search_in_browser(query, browser="chrome"):
     search_url = "http://www.google.com/search?q=" + query
