@@ -83,7 +83,7 @@ def play_shutdown_sound():
     shutdown_sound_path = r'C:\Users\NekaAlimovv\Desktop\Создающейся проэкты\AKIMA_beta\sound\Run\off.wav'
     pygame.mixer.music.load(shutdown_sound_path)
     pygame.mixer.music.play()
-
+#Error sound play
 def play_error():
     error_file = 'C:\\Users\\NekaAlimovv\\Desktop\\Создающейся проэкты\\AKIMA_beta\\sound\\error\\not_found.wav'
     if os.path.exists(error_file):
